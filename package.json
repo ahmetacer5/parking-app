@@ -29,7 +29,7 @@
     "eject": "react-scripts eject",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
-    "ci": "yarn lint && yarn test"
+    "ci": "yarn lint && CI=true yarn test"
   },
   "browserslist": {
     "production": [
