@@ -1,5 +1,3 @@
-import './App.css';
-
 import React, { FC } from 'react';
 import { Card, Grid, ThemeProvider } from 'theme-ui';
 
