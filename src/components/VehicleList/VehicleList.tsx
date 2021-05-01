@@ -17,6 +17,7 @@ const VehicleRow: FC<VehicleRowProps> = observer(
             vehicleType,
             cost,
             totalHours,
+            endPeriod,
             vehicleLocation: { floorId, spotId },
         },
         onExit,
@@ -24,13 +25,13 @@ const VehicleRow: FC<VehicleRowProps> = observer(
         const exitButtonHandler = () => onExit(id);
         return (
             <>
-                <Text variant="tableCell">{plateNumber}</Text>
-                <Text variant="tableCell">{vehicleType}</Text>
-                <Text variant="tableCell">{`${floorId} / ${spotId}`}</Text>
-                <Text variant="tableCell">{totalHours?.toFixed(2) || '-'}</Text>
-                <Text variant="tableCell">{cost?.toFixed(2) || '-'}</Text>
-                <Button variant="secondary" onClick={exitButtonHandler}>
-                    Exit
+                <Text variant="smallText">{plateNumber}</Text>
+                <Text variant="smallText">{vehicleType}</Text>
+                <Text variant="smallText">{`${floorId} / ${spotId}`}</Text>
+                <Text variant="smallText">{totalHours?.toFixed(2) || '0'}</Text>
+                <Text variant="smallText">{cost?.toFixed(2) || '0'}</Text>
+                <Button variant="secondary" disabled={!!endPeriod} onClick={exitButtonHandler}>
+                    {endPeriod ? 'Vehicle left' : 'Exit'}
                 </Button>
             </>
         );
@@ -44,17 +45,7 @@ export interface VehicleListProps {
 
 export const VehicleList: FC<VehicleListProps> = observer(({ vehicles, onExit }) => {
     return (
-        <Grid
-            sx={{
-                textAlign: 'left',
-                maxHeight: '250px',
-                overflow: 'auto',
-                gridTemplateColumns: ['1fr 1fr 1fr 1fr 1fr auto'],
-                gridTemplateRows: 'auto',
-                rowGap: 2,
-                gridAutoRows: '32px',
-            }}
-        >
+        <Grid variant="styles.vehicleListGrid">
             <Text variant="heading">Plate Number</Text>
             <Text variant="heading">Vehicle Type</Text>
             <Text variant="heading">Location</Text>

@@ -3,14 +3,14 @@ import React, { FC } from 'react';
 import { Button } from 'theme-ui';
 
 import { VehicleList } from '../../components';
-import { appStore } from '../../stores/AppStore';
+import { appStore } from '../../stores';
 
 export const VehicleListView: FC = observer(() => {
-    const { getVehicles, exitVehicle, stopAutoCalculator } = appStore;
+    const { getVehicles, exitVehicle, toggleAutoCalculator, autoCalculatorHandle } = appStore;
 
     return (
         <>
-            <Button onClick={stopAutoCalculator}>Stop Auto Calculator</Button>
+            <Button onClick={toggleAutoCalculator}>{autoCalculatorHandle ? 'Stop' : 'Start'} Auto Calculator</Button>
             <VehicleList vehicles={[...getVehicles]} onExit={exitVehicle} />
         </>
     );

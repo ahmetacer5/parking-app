@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Button, Grid } from 'theme-ui';
 
 import { ParkingFloor } from '../../components';
-import { appStore } from '../../stores/AppStore';
+import { appStore } from '../../stores';
 
 export const FloorsView: FC = observer(() => {
     const { getFloors, addNewFloor, changeSpotAvailability } = appStore;

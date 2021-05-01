@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Text } from 'theme-ui';
 
 import { NewVehicleForm } from '../../components';
-import { appStore } from '../../stores/AppStore';
+import { appStore } from '../../stores';
 
 export const NewVehicleView: FC = observer(() => {
     const { getAvailableFloors, registerNewVehicle } = appStore;

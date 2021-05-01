@@ -43,7 +43,7 @@ export const Availability: FC<AvailabilityProps> = observer(({ numbers, onChange
     return (
         <Grid variant="styles.availabilityCard">
             {Object.keys(numbers).map((type) => (
-                <Display spotType={type as SpotType} onChange={onChange} value={numbers[type as SpotType]} />
+                <Display key={type} spotType={type as SpotType} onChange={onChange} value={numbers[type as SpotType]} />
             ))}
         </Grid>
     );

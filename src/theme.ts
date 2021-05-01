@@ -26,24 +26,41 @@ const theme: Theme = {
         muted: '#f6f6f6',
         unavailable: '#FF0000',
         available: '#00FF10',
+        error: '#FF0000',
     },
     buttons: {
-        primary: {
-            color: 'background',
-            bg: 'primary',
+        base: {
             cursor: 'pointer',
+            borderRadius: 1,
             '&:hover': {
                 bg: 'text',
             },
+            '&:disabled': {
+                bg: 'muted',
+                color: 'text',
+                cursor: 'not-allowed',
+            },
+        },
+        primary: {
+            variant: 'buttons.base',
+            color: 'background',
+            bg: 'primary',
         },
         secondary: {
-            cursor: 'pointer',
+            variant: 'buttons.base',
             color: 'background',
             bg: 'secondary',
         },
         tiny: {
             variant: 'buttons.primary',
             p: 0,
+        },
+    },
+    cards: {
+        primary: {
+            padding: 2,
+            borderRadius: 4,
+            boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
         },
     },
     text: {
@@ -64,9 +81,8 @@ const theme: Theme = {
             variant: 'styles.h3',
             m: 0,
         },
-        tableCell: {
+        smallText: {
             fontSize: 2,
-            lineHeight: 'heading',
         },
     },
     styles: {
@@ -177,6 +193,16 @@ const theme: Theme = {
             py: 3,
             border: 'solid 2px gray',
             borderRadius: 2,
+        },
+        vehicleListGrid: {
+            textAlign: 'left',
+            maxHeight: '250px',
+            overflow: 'auto',
+            gridTemplateColumns: ['1fr 1fr 1fr 1fr 1fr auto'],
+            gridTemplateRows: 'auto',
+            rowGap: 2,
+            gridAutoRows: 'auto',
+            alignItems: 'center',
         },
     },
 };

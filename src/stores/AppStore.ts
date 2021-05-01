@@ -44,10 +44,17 @@ export class AppStore {
         makeAutoObservable(this);
 
         this.initialFloors.map((e) => this.floors.set(e.id, e));
-        this.autoCalculatorHandle = setInterval(this.autoCalculateHandler, 1000);
+        this.toggleAutoCalculator();
     }
 
-    stopAutoCalculator = (): void => this.autoCalculatorHandle && clearInterval(this.autoCalculatorHandle);
+    toggleAutoCalculator = (): void => {
+        if (this.autoCalculatorHandle) {
+            clearInterval(this.autoCalculatorHandle);
+            this.autoCalculatorHandle = undefined;
+        } else {
+            this.autoCalculatorHandle = setInterval(this.autoCalculateHandler, 1000);
+        }
+    };
 
     autoCalculateHandler = (): void => {
         const updatedVehicles = this.getVehicles.map((vehicle) => {

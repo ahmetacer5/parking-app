@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { FC } from 'react';
 
 import { Availability } from '../../components';
-import { appStore } from '../../stores/AppStore';
+import { appStore } from '../../stores';
 
 export const EntranceView: FC = observer(() => {
     const { getTotalAvailability } = appStore;
