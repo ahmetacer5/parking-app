@@ -20,19 +20,13 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
         setValue,
         getValues,
         watch,
-        setError,
-    } = useForm<NewVehicleFormData>();
+        clearErrors,
+    } = useForm<NewVehicleFormData>({ mode: 'all', reValidateMode: 'onChange' });
 
     const selectedFloorId = watch('floorId');
+    const getSpotType = (spotId: string) => spots.find((e) => e.id === spotId)?.type;
 
-    const onSubmit = handleSubmit((data) => {
-        if (spots.find((e) => e.id === data.spotId)?.type !== getValues('vehicleType')) {
-            setError('spotId', { message: 'Your vehicle cannot enter that spot!' });
-            return;
-        }
-
-        onRegisterNewVehicle(data);
-    });
+    const onSubmit = handleSubmit(onRegisterNewVehicle);
     const hasAvailableSpots = useCallback(
         (id: string) => floors.find((e) => e.id === id)?.spots.filter((e) => e.available),
         [floors],
@@ -65,6 +59,23 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
         .map((e) => e?.message)
         .join();
 
+    const spotIdValidation = (spotId: string) => {
+        const spotType = getSpotType(spotId);
+        if (spotType !== getValues('vehicleType')) {
+            return `Only ${spotType} type allowed in this spot!`;
+        }
+        clearErrors('vehicleType');
+        return true;
+    };
+    const vehicleTypeValidation = (vehicleType: string) => {
+        const spotType = getSpotType(getValues('spotId'));
+        if (spotType !== vehicleType) {
+            return `Your ${vehicleType} vehicle not allowed to enter ${spotType} spot!`;
+        }
+        clearErrors('spotId');
+        return true;
+    };
+
     return (
         <Box>
             <Grid columns={['1fr 1fr 1fr 1fr auto']} sx={{ alignItems: 'center' }} as="form" onSubmit={onSubmit}>
@@ -82,7 +93,7 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
                         color={errors.vehicleType && 'error'}
                         defaultValue={SpotType.Handicapped}
                         mb={3}
-                        {...register('vehicleType', { required: true })}
+                        {...register('vehicleType', { required: true, validate: vehicleTypeValidation })}
                     >
                         <option value={SpotType.Handicapped}>Handicapped</option>
                         <option value={SpotType.Compact}>Compact</option>
@@ -102,7 +113,11 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
                 </Box>
                 <Box>
                     <Label htmlFor="spotId">Spot</Label>
-                    <Select mb={3} color={errors.spotId && 'error'} {...register('spotId', { required: true })}>
+                    <Select
+                        mb={3}
+                        color={errors.spotId && 'error'}
+                        {...register('spotId', { required: true, validate: spotIdValidation })}
+                    >
                         {spots.map((e) => (
                             <option key={e.id} value={e.id}>
                                 {`${e.id} - ${e.type}`}
