@@ -11,7 +11,7 @@ export const FloorsView: FC = observer(() => {
     return (
         <>
             <Button onClick={addNewFloor}>Add New Floor</Button>
-            <Grid sx={{ p: 4 }}>
+            <Grid sx={{ my: 2 }}>
                 {getFloors.map((floor) => (
                     <ParkingFloor key={floor.id} floor={floor} onChange={changeSpotAvailability} />
                 ))}

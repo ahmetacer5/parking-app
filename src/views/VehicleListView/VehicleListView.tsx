@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { FC } from 'react';
-import { Button } from 'theme-ui';
+import { Switch } from 'theme-ui';
 
 import { VehicleList } from '../../components';
 import { appStore } from '../../stores';
@@ -10,7 +10,11 @@ export const VehicleListView: FC = observer(() => {
 
     return (
         <>
-            <Button onClick={toggleAutoCalculator}>{autoCalculatorHandle ? 'Stop' : 'Start'} Auto Calculator</Button>
+            <Switch
+                label={`Realtime calculating ${autoCalculatorHandle ? 'Enabled' : 'Disabled'}`}
+                checked={!!autoCalculatorHandle}
+                onChange={toggleAutoCalculator}
+            />
             <VehicleList vehicles={[...getVehicles]} onExit={exitVehicle} />
         </>
     );

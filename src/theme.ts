@@ -7,7 +7,7 @@ const theme: Theme = {
         heading: 'inherit',
         monospace: 'Menlo, monospace',
     },
-    fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+    fontSizes: [8, 12, 14, 16, 20, 24, 32, 48, 64, 96],
     radii: [0, 4, 8, 16, 32, 64],
     fontWeights: {
         body: 400,
@@ -24,6 +24,7 @@ const theme: Theme = {
         primary: '#07c',
         secondary: '#30c',
         muted: '#f6f6f6',
+        gray: '#7c7c7c',
         unavailable: '#FF0000',
         available: '#00FF10',
         error: '#FF0000',
@@ -55,6 +56,20 @@ const theme: Theme = {
             variant: 'buttons.primary',
             p: 0,
         },
+        text: {
+            variant: 'buttons.base',
+            bg: 'background',
+            color: 'primary',
+            px: 2,
+            py: 1,
+            '&:hover': {
+                color: 'text',
+            },
+            '&:disabled': {
+                color: 'gray',
+                cursor: 'not-allowed',
+            },
+        },
     },
     cards: {
         primary: {
@@ -84,6 +99,14 @@ const theme: Theme = {
         },
         smallText: {
             fontSize: 2,
+        },
+    },
+    forms: {
+        input: {
+            borderRadius: 1,
+        },
+        select: {
+            borderRadius: 1,
         },
     },
     styles: {
@@ -172,7 +195,7 @@ const theme: Theme = {
         },
         availabilityCard: {
             gridTemplateColumns: 'repeat(4,auto)',
-            columnGap: 3,
+            columnGap: 1,
             svg: { height: '32px' },
             span: {
                 fontSize: 4,
@@ -184,21 +207,19 @@ const theme: Theme = {
             },
             placeItems: 'center',
             textAlign: 'center',
-            px: 3,
-            py: 2,
+            px: 0,
+            py: 0,
         },
         parkingFloor: {
             gridTemplateColumns: ['1', 'auto 300px'],
             h2: { m: 0 },
-            px: 4,
-            py: 3,
+            px: 2,
+            py: 2,
             border: 'solid 2px gray',
             borderRadius: 2,
         },
         vehicleListGrid: {
             textAlign: 'left',
-            maxHeight: '250px',
-            overflow: 'auto',
             gridTemplateColumns: ['1fr 1fr 1fr 1fr 1fr auto'],
             gridTemplateRows: 'auto',
             rowGap: 2,

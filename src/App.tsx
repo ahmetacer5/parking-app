@@ -8,18 +8,6 @@ const App: FC = () => (
     <ThemeProvider theme={theme}>
         <h1>Parking App - (App configured to count seconds as hours)</h1>
         <Grid columns={['1']}>
-            <Grid columns={['1', '1', '1fr 1fr']}>
-                <Card>
-                    <h2>Floors</h2>
-                    <FloorsView />
-                </Card>
-                <Card sx={{ maxHeight: '600px', overflow: 'auto' }}>
-                    <h2>New Vehicle</h2>
-                    <NewVehicleView />
-                    <h2>Current Vehicles</h2>
-                    <VehicleListView />
-                </Card>
-            </Grid>
             <Grid columns={['1fr 1fr']}>
                 <Card>
                     <h2>Total Available Spots (Entrance)</h2>
@@ -28,6 +16,18 @@ const App: FC = () => (
                 <Card>
                     <h2>Total Earnings Today</h2>
                     <TodayEarningView />
+                </Card>
+            </Grid>
+            <Grid columns={['1', '1', '1fr 1fr']}>
+                <Card>
+                    <h2>Floors</h2>
+                    <FloorsView />
+                </Card>
+                <Card>
+                    <h2>New Vehicle</h2>
+                    <NewVehicleView />
+                    <h2>Current Vehicles</h2>
+                    <VehicleListView />
                 </Card>
             </Grid>
         </Grid>

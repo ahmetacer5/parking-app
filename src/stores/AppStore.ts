@@ -108,7 +108,7 @@ export class AppStore {
         };
     };
 
-    get getFloors(): readonly Floor[] {
+    get getFloors(): Floor[] {
         return _.orderBy<Floor>(values(this.floors), 'floor', 'desc');
     }
 

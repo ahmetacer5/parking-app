@@ -30,8 +30,8 @@ const VehicleRow: FC<VehicleRowProps> = observer(
                 <Text variant="smallText">{`${floorId} / ${spotId}`}</Text>
                 <Text variant="smallText">{totalHours?.toFixed(2) || '0'}</Text>
                 <Text variant="smallText">{cost?.toFixed(2) || '0'}</Text>
-                <Button variant="secondary" disabled={!!endPeriod} onClick={exitButtonHandler}>
-                    {endPeriod ? 'Vehicle left' : 'Exit'}
+                <Button variant="text" disabled={!!endPeriod} onClick={exitButtonHandler}>
+                    {endPeriod ? 'Left' : 'Exit'}
                 </Button>
             </>
         );

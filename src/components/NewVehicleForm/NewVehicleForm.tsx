@@ -23,10 +23,11 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
         setError,
     } = useForm<NewVehicleFormData>();
 
-    const floorId = watch('floorId');
+    const selectedFloorId = watch('floorId');
+
     const onSubmit = handleSubmit((data) => {
         if (spots.find((e) => e.id === data.spotId)?.type !== getValues('vehicleType')) {
-            setError('vehicleType', { message: 'Your vehicle cannot enter that spot!' });
+            setError('spotId', { message: 'Your vehicle cannot enter that spot!' });
             return;
         }
 
@@ -36,29 +37,29 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
         (id: string) => floors.find((e) => e.id === id)?.spots.filter((e) => e.available),
         [floors],
     );
+
     useEffect(() => {
-        if (floorId) {
-            setSpots(hasAvailableSpots(floorId) || []);
+        if (selectedFloorId) {
+            setSpots(hasAvailableSpots(selectedFloorId) || []);
         }
-    }, [floorId, floors, hasAvailableSpots]);
+    }, [selectedFloorId, floors, hasAvailableSpots]);
 
     useEffect(() => {
         const nextFloorId = floors[0].id;
-        if (floors && !hasAvailableSpots(floorId)) {
-            setValue('floorId', nextFloorId);
+        if (floors && !hasAvailableSpots(selectedFloorId)) {
             setValue('floorId', nextFloorId);
         }
-    }, [floorId, floors, hasAvailableSpots, setValue]);
+    }, [selectedFloorId, floors, hasAvailableSpots, setValue]);
 
     useEffect(() => {
         if (floors) {
-            const updatedSpots = hasAvailableSpots(floorId);
+            const updatedSpots = hasAvailableSpots(selectedFloorId);
             if (updatedSpots) {
                 setSpots(updatedSpots);
                 setValue('spotId', updatedSpots[0].id);
             }
         }
-    }, [floorId, floors, hasAvailableSpots, setValue]);
+    }, [selectedFloorId, floors, hasAvailableSpots, setValue]);
 
     const errorMessage = Object.values(errors)
         .map((e) => e?.message)
@@ -101,7 +102,7 @@ export const NewVehicleForm: FC<NewVehicleFormProps> = observer(({ onRegisterNew
                 </Box>
                 <Box>
                     <Label htmlFor="spotId">Spot</Label>
-                    <Select mb={3} {...register('spotId', { required: true })}>
+                    <Select mb={3} color={errors.spotId && 'error'} {...register('spotId', { required: true })}>
                         {spots.map((e) => (
                             <option key={e.id} value={e.id}>
                                 {`${e.id} - ${e.type}`}
