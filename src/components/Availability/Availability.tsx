@@ -25,7 +25,7 @@ const Display: FC<DisplayProps> = ({ spotType, value = 0, onChange }) => {
             {spotType === SpotType.Large && <VanIcon />}
             {spotType === SpotType.Handicapped && <WheelchairIcon />}
             {spotType === SpotType.Motorcycle && <MotorcycleIcon />}
-            <span>{value}</span>
+            <span data-testid={`${spotType}-value`}>{value}</span>
             {onChange && (
                 <Button variant="tiny" onClick={onDecreaseHandler}>
                     -

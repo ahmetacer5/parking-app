@@ -58,7 +58,8 @@ const theme: Theme = {
     },
     cards: {
         primary: {
-            padding: 2,
+            py: 2,
+            px: 4,
             borderRadius: 4,
             boxShadow: '0 0 8px rgba(0, 0, 0, 0.125)',
         },

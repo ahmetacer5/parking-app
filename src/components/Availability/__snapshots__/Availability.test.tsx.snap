@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Availability Should match with the snapshot 1`] = `
+<div>
+  <div
+    class="css-1dlftso"
+  >
+    <div
+      class="css-wphdyd"
+    >
+      <svg>
+        motorcycle.svg
+      </svg>
+      <span
+        data-testid="Motorcycle-value"
+      >
+        10
+      </span>
+    </div>
+    <div
+      class="css-wphdyd"
+    >
+      <svg>
+        car.svg
+      </svg>
+      <span
+        data-testid="Compact-value"
+      >
+        5
+      </span>
+    </div>
+  </div>
+</div>
+`;
