@@ -6,7 +6,7 @@ import { EntranceView, FloorsView, NewVehicleView, TodayEarningView, VehicleList
 
 const App: FC = () => (
     <ThemeProvider theme={theme}>
-        <h1>Parking App</h1>
+        <h1>Parking App - (App configured to count seconds as hours)</h1>
         <Grid columns={['1']}>
             <Grid columns={['1', '1', '1fr 1fr']}>
                 <Card>

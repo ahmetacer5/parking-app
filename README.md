@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Create React App 
+# [Access Deployed Version](https://master.d2biytzss0gagy.amplifyapp.com/)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
