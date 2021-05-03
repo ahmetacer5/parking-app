@@ -10,4 +10,5 @@ export interface Vehicle {
     endPeriod?: Date;
     totalHours?: number;
     cost?: number;
+    left?: boolean;
 }

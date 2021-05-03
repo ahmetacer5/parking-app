@@ -95,7 +95,7 @@ export class AppStore {
     };
 
     calculateStaying = (vehicle: Vehicle): Vehicle => {
-        if (vehicle.endPeriod) {
+        if (vehicle.left) {
             return vehicle;
         }
         const currentTime = new Date();
@@ -167,10 +167,12 @@ export class AppStore {
     };
 
     exitVehicle = (vehicleId: string): void => {
-        const vehicle = this.vehicles.get(vehicleId);
+        let vehicle = this.vehicles.get(vehicleId);
         if (vehicle) {
+            vehicle = this.calculateStaying(vehicle);
             vehicle.endPeriod = new Date();
-            this.vehicles.set(vehicleId, this.calculateStaying(vehicle));
+            vehicle.left = true;
+            this.vehicles.set(vehicleId, vehicle);
         }
     };
 
